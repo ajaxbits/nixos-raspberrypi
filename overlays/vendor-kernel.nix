@@ -52,6 +52,56 @@ let
       hash = srcHash;
     };
   };
+  # only for RPI5
+  linux_v6_6_74_cfg_argsOverride = super: linux_argsOverride {
+    # https://github.com/raspberrypi/linux/releases/tag/stable_20250127
+    modDirVersion = "6.6.74";
+    tag = "stable_20250127";
+    srcHash = "sha256-17PrkPUGBKU+nO40OP+O9dzZeCfRPlKnnk/PJOGamU8=";
+    structuredExtraConfig = with super.lib.kernel; {
+      ## generated from
+      ## https://github.com/RPi-Distro/linux-packaging/tree/0f16c6016c8dfad65e72609257c956c955c69843
+
+      # Content of file: config-arm64-rpi/config
+      CRYPTO_AES = module ; # =yes in nixos;
+      CRYPTO_SHA512 = module ; # =yes in nixos;
+      NET_CLS_BPF = yes ; # =module in nixos;
+      PREEMPT = yes;
+      # Content of file: config-arm64-rpi/config.2712
+      LOCALVERSION = "-v8-16k" ; # ="" in nixos;
+      # Content of file: config-featureset-rpi/config
+      BINFMT_MISC = module ; # =yes in nixos;
+      CMA_SIZE_MBYTES = 5 ; # =32 in nixos;
+      CPU_FREQ_DEFAULT_GOV_ONDEMAND = yes;
+      DRM = module ; # =yes in nixos;
+      F2FS_FS = yes ; # =module in nixos;
+      FB_SIMPLE = yes;
+      IKCONFIG = module ; # =yes in nixos;
+      IPV6 = module ; # =yes in nixos;
+      IP_PNP = yes;
+      IP_PNP_DHCP = yes;
+      IP_PNP_RARP = yes;
+      LOGO = yes;
+      NFS_FS = yes ; # =module in nixos;
+      NFS_V4 = yes ; # =module in nixos;
+      NLS_CODEPAGE_437 = yes ; # =module in nixos;
+      NTFS_FS = module;
+      NTFS_RW = yes;
+      ROOT_NFS = yes;
+      UEVENT_HELPER = yes;
+      USB_SERIAL = module ; # =yes in nixos;
+      # Content of file: config-featureset-rt/config
+      PREEMPT_RT = yes;
+      RCU_EXPERT = yes;
+      HWLAT_TRACER = yes;
+      OSNOISE_TRACER = yes;
+      TIMERLAT_TRACER = yes;
+
+      # see also for RT:
+      # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/kernel/linux-rt-6.6.nix#L50
+
+    };
+  } super;
   linux_v6_6_74_argsOverride = super: linux_argsOverride {
     # https://github.com/raspberrypi/linux/releases/tag/stable_20250127
     modDirVersion = "6.6.74";
@@ -137,6 +187,7 @@ let
   } super;
 
   linuxArgsOverride = {
+    "6_6_74_cfg" = linux_v6_6_74_cfg_argsOverride;
     "6_6_74" = linux_v6_6_74_argsOverride;
     "6_6_51" = linux_v6_6_51_argsOverride;
     "6_6_31" = linux_v6_6_31_argsOverride;
@@ -180,6 +231,7 @@ let
 
 in self: super: super.lib.mergeAttrsList (
   builtins.concatLists [
+    (mkLinuxFor super "6_6_74_cfg" [ "5" ])
     (mkLinuxFor super "6_6_74" [ "02" "4" "5" ])
     (mkLinuxFor super "6_6_51" [ "02" "4" "5" ])
     (mkLinuxFor super "6_6_31" [ "4" "5" ])
