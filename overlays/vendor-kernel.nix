@@ -63,21 +63,22 @@ let
       ## https://github.com/RPi-Distro/linux-packaging/tree/0f16c6016c8dfad65e72609257c956c955c69843
 
       # Content of file: config-arm64-rpi/config
-      CRYPTO_AES = module ; # =yes in nixos;
-      CRYPTO_SHA512 = module ; # =yes in nixos;
+      # CRYPTO_AES = module ; # =yes in nixos;
+      # CRYPTO_SHA512 = module ; # =yes in nixos;
       NET_CLS_BPF = yes ; # =module in nixos;
       PREEMPT = yes;
       # Content of file: config-arm64-rpi/config.2712
-      LOCALVERSION = "-v8-16k" ; # ="" in nixos;
+      # LOCALVERSION = "-v8-16k" ; # ="" in nixos;
+
       # Content of file: config-featureset-rpi/config
-      BINFMT_MISC = module ; # =yes in nixos;
+      # BINFMT_MISC = module ; # =yes in nixos;
       CMA_SIZE_MBYTES = 5 ; # =32 in nixos;
       CPU_FREQ_DEFAULT_GOV_ONDEMAND = yes;
-      DRM = module ; # =yes in nixos;
+      # DRM = module ; # =yes in nixos;
       F2FS_FS = yes ; # =module in nixos;
       FB_SIMPLE = yes;
-      IKCONFIG = module ; # =yes in nixos;
-      IPV6 = module ; # =yes in nixos;
+      # IKCONFIG = module ; # =yes in nixos;
+      # IPV6 = module ; # =yes in nixos;
       IP_PNP = yes;
       IP_PNP_DHCP = yes;
       IP_PNP_RARP = yes;
@@ -90,6 +91,8 @@ let
       ROOT_NFS = yes;
       UEVENT_HELPER = yes;
       USB_SERIAL = module ; # =yes in nixos;
+      # USB_SERIAL = module ; # =yes in nixos;
+
       # Content of file: config-featureset-rt/config
       PREEMPT_RT = yes;
       RCU_EXPERT = yes;
@@ -97,7 +100,8 @@ let
       OSNOISE_TRACER = yes;
       TIMERLAT_TRACER = yes;
 
-      # see also for RT:
+      # https://www.kernelconfig.io/
+      # see also for PREEMPT, RT:
       # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/kernel/linux-rt-6.6.nix#L50
 
     };
