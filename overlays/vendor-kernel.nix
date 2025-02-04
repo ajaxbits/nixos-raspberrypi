@@ -65,28 +65,28 @@ let
       # Content of file: config-arm64-rpi/config
       # CRYPTO_AES = module ; # =yes in nixos;
       # CRYPTO_SHA512 = module ; # =yes in nixos;
-      NET_CLS_BPF = yes ; # =module in nixos;
-      PREEMPT = yes;
+      NET_CLS_BPF = super.lib.mkForce yes ; # =module in nixos;
+      PREEMPT = super.lib.mkForce yes;
       # Content of file: config-arm64-rpi/config.2712
       # LOCALVERSION = "-v8-16k" ; # ="" in nixos;
 
       # Content of file: config-featureset-rpi/config
       # BINFMT_MISC = module ; # =yes in nixos;
-      CMA_SIZE_MBYTES = 5 ; # =32 in nixos;
+      CMA_SIZE_MBYTES = super.lib.mkForce (freeform "5") ; # =32 in nixos;
       CPU_FREQ_DEFAULT_GOV_ONDEMAND = yes;
       # DRM = module ; # =yes in nixos;
-      F2FS_FS = yes ; # =module in nixos;
+      # F2FS_FS = yes ; # =module in nixos;
       FB_SIMPLE = yes;
       # IKCONFIG = module ; # =yes in nixos;
       # IPV6 = module ; # =yes in nixos;
-      IP_PNP = yes;
+      IP_PNP = super.lib.mkForce yes;
       IP_PNP_DHCP = yes;
       IP_PNP_RARP = yes;
-      LOGO = yes;
-      NFS_FS = yes ; # =module in nixos;
+      LOGO = super.lib.mkForce yes;
+      NFS_FS = super.lib.mkForce yes ; # =module in nixos;
       NFS_V4 = yes ; # =module in nixos;
-      NLS_CODEPAGE_437 = yes ; # =module in nixos;
-      NTFS_FS = module;
+      NLS_CODEPAGE_437 = super.lib.mkForce yes ; # =module in nixos;
+      NTFS_FS = super.lib.mkForce module;
       NTFS_RW = yes;
       ROOT_NFS = yes;
       UEVENT_HELPER = yes;
