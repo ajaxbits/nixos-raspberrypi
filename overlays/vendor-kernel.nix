@@ -89,8 +89,7 @@ let
       NTFS_FS = super.lib.mkForce module;
       NTFS_RW = yes;
       ROOT_NFS = yes;
-      UEVENT_HELPER = yes;
-      USB_SERIAL = module ; # =yes in nixos;
+      # UEVENT_HELPER = yes;
       # USB_SERIAL = module ; # =yes in nixos;
 
       # Content of file: config-featureset-rt/config
