@@ -50,7 +50,7 @@ lib.overrideDerivation (buildLinux (args // rec {
     hydraPlatforms = [ "aarch64-linux" ];
   };
 
-  ignoreConfigErrors = true;
+  ignoreConfigErrors = false;
 
 } // (args.argsOverride or {}))) (oldAttrs: {
   postConfigure = ''

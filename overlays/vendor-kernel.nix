@@ -92,17 +92,19 @@ let
       # UEVENT_HELPER = yes;
       # USB_SERIAL = module ; # =yes in nixos;
 
-      # Content of file: config-featureset-rt/config
-      PREEMPT_RT = yes;
-      RCU_EXPERT = yes;
-      HWLAT_TRACER = yes;
-      OSNOISE_TRACER = yes;
-      TIMERLAT_TRACER = yes;
+      # # Content of file: config-featureset-rt/config
+      # PREEMPT_RT = yes;
+      # RCU_EXPERT = yes;
+      # HWLAT_TRACER = yes;
+      # OSNOISE_TRACER = yes;
+      # TIMERLAT_TRACER = yes;
 
       # https://www.kernelconfig.io/
       # see also for PREEMPT, RT:
       # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/kernel/linux-rt-6.6.nix#L50
 
+      # Fix 'error: option not set correctly: PREEMPT (wanted 'y', got 'n')'
+      PREEMPT_VOLUNTARY = super.lib.mkForce no; # conflicts with PREEMPT
     };
   } super;
   linux_v6_6_74_argsOverride = super: linux_argsOverride {
