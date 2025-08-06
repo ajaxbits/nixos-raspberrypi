@@ -51,6 +51,13 @@ let
 
   # Linux
 
+  linux_v6_12_41_argsOverride = {
+    modDirVersion = "6.12.41";
+    tag = "unstable_20250805";
+    rev = "68d43e3bdf3c48578fc423c3c018a9ec98029428"; # 6.12.41+
+    srcHash = "sha256-6YA4lUECVJEcn/i5pL/gQoeI++6OtOkSRHsOMVmuwwE=";
+  };
+
   linux_v6_12_34_argsOverride = {
     # https://github.com/raspberrypi/linux/releases/tag/stable_20250702
     modDirVersion = "6.12.34";
@@ -212,6 +219,7 @@ let
     ];
   };
 in {
+  "6_12_41" = linux_v6_12_41_argsOverride;
   "6_12_34" = linux_v6_12_34_argsOverride;
   "6_12_25" = linux_v6_12_25_argsOverride;
   "6_6_74" = linux_v6_6_74_argsOverride;
